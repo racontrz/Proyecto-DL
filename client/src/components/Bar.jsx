@@ -5,10 +5,11 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import { useData } from '../Context'
 import { useNavigate } from 'react-router-dom';
-
+import usersBd from '../user.json';
 
 function Bar() {
   const { user, setUser } = useData();
+  const { image } = user;	
   const navegate = useNavigate();
   const DarkMode = () => {  
     document.querySelector( 'body' ).setAttribute( 'data-bs-theme', 'dark' );
@@ -48,13 +49,14 @@ function Bar() {
             
             {!objeto(user) ? (
               <div>
-              <Button variant="outline-secondary" className="me-2">
-              <NavLink className="nav-link" to="/perfil">Mi Perfil</NavLink>
-              </Button>
-              <Button variant="outline-danger" >
-              <NavLink className="nav-link" to="/login" onClick={salir}>Salir</NavLink>
-              </Button>
-             </div>
+                <img src={usersBd.image} className="rounded-circle me-2" alt="avatar" width="40" height="40" />
+                <Button variant="outline-secondary" className="me-2">
+                <NavLink className="nav-link" to="/perfil">Mi Perfil</NavLink>
+                </Button>
+                <Button variant="outline-danger" >
+                <NavLink className="nav-link" to="/login" onClick={salir}>Salir</NavLink>
+                </Button>
+              </div>
             ) : (
              <div>
               <Button variant="outline-secondary" className="me-2">

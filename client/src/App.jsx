@@ -26,16 +26,16 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Registro />} />
-            <Route path="/perfil" element={<PrivateRoute />} />
-              <Route path='/perfil' element={<Perfil />} />
-            <Route />  
+            <Route path="/perfil" element={<PrivateRoute />} >
+              <Route path="/perfil" element={<Perfil />} />
+            </Route >  
             <Route path="*" element={<NotFound />} />
             <Route path="/mis-publicaciones" element={<Publicaciones/>} />
             <Route path="/nueva-publicacion" element={<NuevaPublicacion/>} />
             <Route path="/mis-datos" element={<EditarPerfil/>} />
           
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
       </Context.Provider>
 
     </div>  
