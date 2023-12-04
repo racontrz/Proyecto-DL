@@ -1,24 +1,22 @@
 const { Router } = require('express');
 const router = Router();
-const jwt = require('jsonwebtoken');
-const { userVerification, tokenVerification } = require('../../middleware/middleware');
+
 
 const { 
   postUser,
-  dataUser,
-  keyUser,
+  getUser,
   getAllProductos, 
   getIdProducto, 
   postProducto, 
   deleteProducto, 
   putProducto
   
-} = require('../controllers/productos.controller');
+} = require('../controllers/controller');
 
-router.get('/usuarios', userVerification, async (req, res) => {
-  const usuario = req.
-});
+router.get('/usuarios', getUser );
 
+router.post('/usuarios', postUser );
+ 
 router.get('/productos', getAllProductos );
 
 router.get('/producto/:id', getIdProducto);

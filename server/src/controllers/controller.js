@@ -1,47 +1,38 @@
 
 const pool = require('../../db');
-const bcrypt = require('bcrypt');
 
 
-const postUser = async ( user ) => {
+
+const postUser = async (req, res) => {
+  const {user_id, name, email, password} = req.body;
+
   try {
-    let { name, email, password } = user;
-  const key = bcrypt.hashSync(password);
-  password = key;
-  const values = [ name, email, key ];
-  const consulta = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *';
-  await pool.query(consulta, values); 
+    const result = await pool.query(
+      'INSERT INTO users (user_id, name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',[
+        user_id, 
+        name, 
+        email, 
+        password
+        
+      ]
+    );
+  
+    res.send(result.rows[0]);
   } catch (error) {
     console.log(error.message);
-  }
+  };
 };
 
-const dataUser = async ( email ) => {
+const getUser = async (req, res) => {
   try {
-    const values = [email];
-    const consulta = 'SELECT * FROM users WHERE email = $1';
-    const { rows: [user], rowCount } = await pool.query(consulta, values);
-    if ( !rowCount ) {throw { code: 404, message: 'User not found' } };
-    delete user.password;
-    return user;
+    const result = await pool.query('SELECT * FROM users');
+    res.json(result.rows);
   } catch (error) {
-    console.log(error.message)
-  }
-}
-
-const keyUser = async ( email, password ) => {
-  try {
-    const values = [email, password];
-    const consulta = 'SELECT * FROM users WHERE email = $1 AND password = $2';
-    const { rows: [user], rowCount } = await pool.query(consulta, values);
-    if ( !rowCount ) {throw { code: 404, message: 'User not found' } };
-    delete user.password;
-    return user;
-  } catch (error) {
-    console.log(error.message)
-  }
- 
+    console.log(error.message);
+  };
 };
+
+
 const getAllProductos = async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM products');
@@ -132,8 +123,7 @@ const putProducto = async (req, res) => {
 
 module.exports = {
   postUser,
-  dataUser,
-  keyUser,
+  getUser,
   getAllProductos,
   getIdProducto,
   postProducto,
