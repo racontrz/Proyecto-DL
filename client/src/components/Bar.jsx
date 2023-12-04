@@ -3,10 +3,14 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import { useData } from '../Context'
+import { useNavigate } from 'react-router-dom';
 
 
 function Bar() {
-  const DarkMode = () => {
+  const { user, setUser } = useData();
+  const navegate = useNavigate();
+  const DarkMode = () => {  
     document.querySelector( 'body' ).setAttribute( 'data-bs-theme', 'dark' );
     document.querySelector( '#dl-icon' ).setAttribute( 'class', 'bi bi-sun-fill' );
   } 
@@ -14,10 +18,18 @@ function Bar() {
     document.querySelector( 'body' ).setAttribute( 'data-bs-theme', 'light' );
     document.querySelector( '#dl-icon' ).setAttribute( 'class', 'bi bi-moon-fill' );
   } 
-
   const SwitchMode = () => {
     document.querySelector( 'body' ).getAttribute( 'data-bs-theme' ) === 'light' ? DarkMode() : LightkMode();
   }
+
+ const objeto = (o) => {
+   return Object.entries(o).length === 0;
+ };
+
+ const salir = () => {
+   setUser({});
+   return navegate('/perfil');
+ }
 
   return (
     <div>
@@ -34,12 +46,26 @@ function Bar() {
             
             <Button onClick={SwitchMode} className="btn-secondary rounded me-3"><i id="dl-icon" className="bi bi-moon-fill"></i></Button>
             
-            <Button variant="outline-secondary" className="me-2">
-            <NavLink className="nav-link" to="/login">Acceder</NavLink>
-            </Button>
-            <Button variant="outline-secondary" >
-            <NavLink className="nav-link" to="/registro">Crear Cuenta</NavLink>
-            </Button>
+            {!objeto(user) ? (
+              <div>
+              <Button variant="outline-secondary" className="me-2">
+              <NavLink className="nav-link" to="/perfil">Mi Perfil</NavLink>
+              </Button>
+              <Button variant="outline-danger" >
+              <NavLink className="nav-link" to="/login" onClick={salir}>Salir</NavLink>
+              </Button>
+             </div>
+            ) : (
+             <div>
+              <Button variant="outline-secondary" className="me-2">
+              <NavLink className="nav-link" to="/login">Acceder</NavLink>
+              </Button>
+              <Button variant="outline-secondary" >
+              <NavLink className="nav-link" to="/registro">Crear Cuenta</NavLink>
+              </Button>
+             </div>
+            )}   
+            
            
           </Navbar.Collapse>
         </Container>
@@ -49,3 +75,4 @@ function Bar() {
 }
 
 export default Bar;
+
