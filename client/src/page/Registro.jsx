@@ -2,8 +2,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
+
 
 function Registro() {
 
@@ -33,7 +33,7 @@ function Registro() {
           />
       </Form.Group>
 
-      <Form.Group className="mb-4" controlId="formGridAddress1">
+      <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Contraseña</Form.Label>
           <Form.Control 
             type="password" 
@@ -43,7 +43,15 @@ function Registro() {
           />
       </Form.Group>
 
-            
+      <Form.Group className="mb-4" controlId="formGridAddress1">
+        <Form.Label>Imagen</Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="Link Imagen"
+            // value={user.image}
+            // onChange={handleSetUsuario}
+          />
+      </Form.Group>          
 
       <Button 
         // onClick={registrarUsuario}

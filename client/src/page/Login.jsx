@@ -23,10 +23,10 @@ function Login() {
       } else if(password !== usersBd.password) {
           alert('Password incorrecto');
         } else {
-        const { email: emailPrueba, password: passwordPrueba, token} = usersBd;
+        const { email: emailPrueba, password: passwordPrueba, } = usersBd;
     
       if (emailPrueba === email && passwordPrueba === password) {
-        setUser({ emailPrueba: email, passwordPrueba: password, token: token });
+        setUser({ emailPrueba: email, passwordPrueba: password });
         alert('Sesion iniciada');
         return navigate('/perfil');
       }
