@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import usersBd from '../user.json';
+import { NavLink } from "react-router-dom";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../Context';
@@ -59,12 +60,24 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           />
       </Form.Group>     
-      <Button 
-        variant="outline-secondary" 
-        type="submit" className='mb-3'
-        onClick={handleSubmit}>
-        ingresar
-      </Button>
+      <div className='d-flex justify-content-between'>
+        <div >
+          <Button 
+            variant="outline-secondary" 
+            type="submit" className='mb-3'
+            onClick={handleSubmit}>
+            ingresar
+          </Button>
+        </div>
+        <div>
+        <NavLink 
+          className="navbar-brand me-3" 
+          to="/registro"
+          >
+            Crear Cuenta
+          </NavLink>
+        </div>
+      </div>
     </Form>
     </div>
     </div>

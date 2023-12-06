@@ -13,7 +13,7 @@ const NuevaPublicacion = () => {
       <Perfil />
       <div>
       <h1 className="text-center mt-5">Nueva Publicación</h1>
-      <div className="container border rounded  mt-5 ">
+      <div className="container border rounded w-50 mt-5 ">
       <Form className='container mt-3'>
         <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Nombre</Form.Label>

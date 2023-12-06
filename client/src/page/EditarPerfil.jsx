@@ -22,11 +22,15 @@ const EditarPerfil = () => {
           <Form.Control type="email" placeholder="Correo" />
       </Form.Group>
 
-      <Form.Group className="mb-4" controlId="formGridAddress1">
+      <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Contraseña</Form.Label>
           <Form.Control type="password" placeholder="Contraseña" />
-      </Form.Group>     
-      <Button variant="outline-secondary" type="submit" className='mb-3'>
+      </Form.Group>
+      <Form.Group className="mb-4" controlId="formGridAddress1">
+        <Form.Label>Imagen</Form.Label>
+          <Form.Control type="text" placeholder="Link Imagen" />
+      </Form.Group>      
+      <Button variant="outline-secondary" type="submit" className='mb-4'>
         ingresar
       </Button>
     </Form>

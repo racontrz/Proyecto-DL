@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -53,13 +54,25 @@ function Registro() {
           />
       </Form.Group>          
 
-      <Button 
-        // onClick={registrarUsuario}
-        variant="outline-secondary" 
-        type="submit" 
-        className='mb-3'>
-        Registrate
-      </Button>
+      <div className='d-flex justify-content-between'>
+        <div>
+          <Button 
+            // onClick={registrarUsuario}
+            variant="outline-secondary" 
+            type="submit" 
+            className='mb-3 '>
+            Registrate
+          </Button>
+        </div>
+        <div>
+        <NavLink 
+          className="navbar-brand me-3" 
+          to="/login"
+          >
+            Acceder
+          </NavLink>
+        </div>
+      </div>
     </Form>
     </div>
     </div>

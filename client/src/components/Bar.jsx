@@ -9,7 +9,7 @@ import usersBd from '../user.json';
 
 function Bar() {
   const { user, setUser } = useData();
-  const { image } = user;	
+ 
   const navegate = useNavigate();
   const DarkMode = () => {  
     document.querySelector( 'body' ).setAttribute( 'data-bs-theme', 'dark' );
@@ -45,7 +45,7 @@ function Bar() {
               navbarScroll>
             </Nav>
             
-            <Button onClick={SwitchMode} className="btn-secondary rounded me-3"><i id="dl-icon" className="bi bi-moon-fill"></i></Button>
+            <Button onClick={SwitchMode} className="btn-secondary rounded me-3"><i id="dl-icon" className="bi bi-sun-fill"></i></Button>
             
             {!objeto(user) ? (
               <div>
