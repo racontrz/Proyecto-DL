@@ -1,36 +1,5 @@
 
-const pool = require('../db');
-
-
-
-const postUser = async (req, res) => {
-  const {user_id, name, email, password} = req.body;
-
-  try {
-    const result = await pool.query(
-      'INSERT INTO users (user_id, name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',[
-        user_id, 
-        name, 
-        email, 
-        password
-        
-      ]
-    );
-  
-    res.send(result.rows[0]);
-  } catch (error) {
-    console.log(error.message);
-  };
-};
-
-const getUser = async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM users');
-    res.json(result.rows);
-  } catch (error) {
-    console.log(error.message);
-  };
-};
+const pool = require('../db.js');
 
 
 const getAllProductos = async (req, res) => {
@@ -42,7 +11,7 @@ const getAllProductos = async (req, res) => {
   };
 };
 
-const getIdProducto = async (req, res) => {
+const getIdProductos = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM products WHERE product_id = $1', [id]);
@@ -56,13 +25,12 @@ const getIdProducto = async (req, res) => {
     console.log(error.message);
   }
 };
-const postProducto = async (req, res) => {
-  const {product_id, name, brand, description, image, price, user_id} = req.body;
+const postProductos = async (req, res) => {
+  const { name, brand, description, image, price, user_id} = req.body;
 
   try {
     const result = await pool.query(
-      'INSERT INTO products (product_id, name, brand, description, image, price, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',[
-        product_id, 
+      'INSERT INTO products (name, brand, description, image, price, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',[
         name, 
         brand, 
         description, 
@@ -78,23 +46,7 @@ const postProducto = async (req, res) => {
   };
 };
 
-const deleteProducto = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const result = await pool.query('DELETE FROM products WHERE product_id = $1', [id]);
-
-    if (result.rowCount === 0) {
-      res.status(404).json({ message: 'Producto no encontrado' });
-    } else {
-      res.sendStatus(204);
-    }
-
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-const putProducto = async (req, res) => {
+const putProductos = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, brand, description, image, price } = req.body;
@@ -121,12 +73,29 @@ const putProducto = async (req, res) => {
   }
 };
 
+
+const deleteProductos = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query('DELETE FROM products WHERE product_id = $1', [id]);
+
+    if (result.rowCount === 0) {
+      res.status(404).json({ message: 'Producto no encontrado' });
+    } else {
+      res.sendStatus(204);
+    }
+
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
 module.exports = {
-  postUser,
-  getUser,
   getAllProductos,
-  getIdProducto,
-  postProducto,
-  deleteProducto,
-  putProducto
+  getIdProductos,
+  postProductos,
+  putProductos,
+  deleteProductos
+  
 }

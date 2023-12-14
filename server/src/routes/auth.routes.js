@@ -1,13 +1,14 @@
 const { Router } = require('express');
+const { postUser, getUser } = require('../controllers/auth.controller');
 const router = Router();
 
-router.post('/login', (req, res) => res.send('ingresando'));
+router.post('/login', );
 
-router.post('/registro', (req, res) => res.send('registrando'));
+router.post('/registro', postUser );
 
-router.post('/exit', (req, res) => res.send('cerradno cesion'));
+router.post('/exit', );
 
-router.get('/perfil', (req, res) => res.send('perfil usuario'));
+router.get('/perfil', getUser);
 
 
 

@@ -1,16 +1,16 @@
 const { Router } = require('express');
 const router = Router();
+const { getAllProductos, getIdProductos, postProductos, putProductos, deleteProductos } = require('../controllers/controller.js');
 
-router.get('/usuarios', (req, res) => res.send('obteniendo usuarios'));
+router.get('/productos', getAllProductos);
 
-router.get('/usuario/:id', (req, res) => res.send('obteniendo usuario unico'));
+router.get('/productos/:id', getIdProductos);
 
-router.post('/usuarios', (req, res) => res.send('creando usuario'));
+router.post('/productos', postProductos);
 
-router.put('/usuarios/:id', (req, res) => res.send('actualizando tarea'));
+router.put('/productos/:id', putProductos);
 
-
-router.delete('/usuarios/:id', (req, res) => res.send('eliminando usuario'));
+router.delete('/productos/:id', deleteProductos);
 
 
 module.exports = router;
