@@ -1,14 +1,15 @@
 const { Router } = require('express');
-const { postUser, getUser } = require('../controllers/auth.controller');
+const { registroUser, loginUser, exitUser, perfilUser } = require('../controllers/auth.controller');
+const { isAuth } = require('../middlewares/auth.middleware');
 const router = Router();
 
-router.post('/login', );
+router.post('/login', loginUser );
 
-router.post('/registro', postUser );
+router.post('/registro', registroUser );
 
-router.post('/exit', );
+router.post('/exit', exitUser);
 
-router.get('/perfil', getUser);
+router.get('/perfil', isAuth, perfilUser);
 
 
 

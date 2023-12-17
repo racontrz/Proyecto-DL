@@ -1,25 +1,27 @@
+
+
 CREATE DATABASE drum;
 
---TABLA DE USUARIOS--
-CREATE TABLE
-	users (
-		user_id SERIAL PRIMARY KEY,
-		name VARCHAR(50),
-		email VARCHAR(50) UNIQUE,
-		password VARCHAR(250),
-		image VARCHAR(250)
-	);
-
---TABLA DE PRODUCTOS--
-CREATE TABLE
-	products (
-		product_id SERIAL PRIMARY KEY,
-		name VARCHAR(50),
-		brand VARCHAR(50),
-		descripcion VARCHAR(1000),
-		image VARCHAR(500),
-    price INT,
-		user_id INT,
-		CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
-	);
+	CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(500) NOT NULL,
+  image VARCHAR(500)
+);
+ 
+CREATE TABLE IF NOT EXISTS products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(45) NOT NULL,
+  brand VARCHAR(45) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  image VARCHAR(45) NOT NULL,
+  price INT NOT NULL,
+  create_by INT NOT NULL,
+  CONSTRAINT create_by
+    FOREIGN KEY (create_by)
+    REFERENCES users (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+		);
  

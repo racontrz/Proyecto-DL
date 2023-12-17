@@ -26,7 +26,7 @@ const getIdProductos = async (req, res) => {
   }
 };
 const postProductos = async (req, res) => {
-  const { name, brand, description, image, price, user_id} = req.body;
+  const { name, brand, description, image, price, create_by} = req.body;
 
   try {
     const result = await pool.query(
@@ -36,7 +36,7 @@ const postProductos = async (req, res) => {
         description, 
         image, 
         price, 
-        user_id
+        create_by
       ]
     );
   
@@ -52,7 +52,7 @@ const putProductos = async (req, res) => {
     const { name, brand, description, image, price } = req.body;
 
     const result = await pool.query(
-      'UPDATE products SET name = $1, brand = $2, description = $3, image = $4, price = $5 WHERE product_id = $6 RETURNING *', [
+      'UPDATE products SET name = $1, brand = $2, description = $3, image = $4, price = $5 WHERE id = $6 RETURNING *', [
         name,
         brand,
         description,
@@ -77,7 +77,7 @@ const putProductos = async (req, res) => {
 const deleteProductos = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('DELETE FROM products WHERE product_id = $1', [id]);
+    const result = await pool.query('DELETE FROM products WHERE id = $1', [id]);
 
     if (result.rowCount === 0) {
       res.status(404).json({ message: 'Producto no encontrado' });
