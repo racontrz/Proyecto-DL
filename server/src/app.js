@@ -4,7 +4,9 @@ const routes = require('./routes/routes.js');
 const authRoutes = require('./routes/auth.routes.js');
 const cookieParser = require('cookie-parser');
 const app = express();
+const cors = require('cors');
 
+app.use(cors({ origin: 'http://localhost:5173'}));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
