@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS products (
   name VARCHAR(45) NOT NULL,
   brand VARCHAR(45) NOT NULL,
   description VARCHAR(500) NOT NULL,
-  image VARCHAR(45) NOT NULL,
+  image VARCHAR(500) NOT NULL,
   price INT NOT NULL,
   create_by INT NOT NULL,
   CONSTRAINT create_by

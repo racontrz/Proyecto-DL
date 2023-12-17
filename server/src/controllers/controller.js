@@ -11,6 +11,15 @@ const getAllProductos = async (req, res) => {
   };
 };
 
+const getMyProductos = async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM products WHERE create_by = $1', [req.userId]);
+    res.json(result.rows);
+  } catch (error) {
+    console.log(error.message);
+  };
+};
+
 const getIdProductos = async (req, res) => {
   try {
     const { id } = req.params;
@@ -25,18 +34,19 @@ const getIdProductos = async (req, res) => {
     console.log(error.message);
   }
 };
-const postProductos = async (req, res) => {
-  const { name, brand, description, image, price, create_by} = req.body;
+const postProductos = async (req, res, next) => {
+  const { name, brand, description, image, price} = req.body;
+
 
   try {
     const result = await pool.query(
-      'INSERT INTO products (name, brand, description, image, price, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',[
+      'INSERT INTO products (name, brand, description, image, price, create_by) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',[
         name, 
         brand, 
         description, 
         image, 
         price, 
-        create_by
+        req.userId
       ]
     );
   
@@ -44,6 +54,7 @@ const postProductos = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   };
+  
 };
 
 const putProductos = async (req, res) => {
@@ -93,6 +104,7 @@ const deleteProductos = async (req, res) => {
 
 module.exports = {
   getAllProductos,
+  getMyProductos,
   getIdProductos,
   postProductos,
   putProductos,
