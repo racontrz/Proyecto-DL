@@ -2,13 +2,14 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
-
-
+import { useAuth } from "../Context";
 
 const Perfil = () => {
+  const { user } = useAuth();
  
   return (
     <div className='container mt-4'>
+       
       <h1 className="text-center mb-4">Mi Perfil</h1>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
@@ -19,6 +20,7 @@ const Perfil = () => {
       </Navbar>
     </div>
   )
-}
+  
+};
 
 export default Perfil

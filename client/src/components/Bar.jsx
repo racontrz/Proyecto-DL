@@ -3,12 +3,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
-import { useData } from '../Context'
 import { useNavigate } from 'react-router-dom';
-import usersBd from '../user.json';
+
 
 function Bar() {
-  const { user, setUser } = useData();
+  // const { user, setUser } = useData();
  
   const navegate = useNavigate();
   const DarkMode = () => {  
@@ -47,7 +46,7 @@ function Bar() {
             
             <Button onClick={SwitchMode} className="btn-secondary rounded me-3"><i id="dl-icon" className="bi bi-sun-fill"></i></Button>
             
-            {!objeto(user) ? (
+            {/* {!objeto(user) ? (
               <div>
                 <img src={usersBd.image} className="rounded-circle me-2" alt="avatar" width="40" height="40" />
                 <Button variant="outline-secondary" className="me-2">
@@ -66,7 +65,7 @@ function Bar() {
               <NavLink className="nav-link" to="/registro">Crear Cuenta</NavLink>
               </Button>
              </div>
-            )}   
+            )}    */}
             
            
           </Navbar.Collapse>

@@ -1,34 +1,32 @@
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-
+import { useAuth } from '../Context';
+import { useNavigate } from 'react-router-dom';
 
 
 function Registro() {
-
+  const navegate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
+  const { registro, errors: registroErrors } = useAuth();
+   
   const onSubmit = handleSubmit (async(data) => {
-    console.log(data)
-    const response = await fetch('http://localhost:3000/api/registro', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const dataRegistro = await response.json();
-    console.log(dataRegistro);
+    const user = await registro(data);
+    if (user) {
+      navegate('/login');
+    };
+    
+      
   });
 
-console.log(errors)
 
   return (
     <div className='container'>
       <h1 className="text-center mt-5">Crear Cuenta</h1>
       <div className="container border rounded w-50 mt-5 ">
+      { registroErrors && (registroErrors.map(err =>( <p className='text-danger text-center mt-2'>{err}</p>))) }
       <Form className='container mt-3'>
       <Form.Group as={Col}  className="mb-3">
           <Form.Label>Nombre</Form.Label>
@@ -37,17 +35,17 @@ console.log(errors)
             placeholder="Nombre" 
             {...register("username", { required: true })}
            />
-           {errors.name && <span className='text-danger'>Nombre es requerido</span>}
+           {errors.username && <span className='text-danger'>Nombre es requerido</span>}
         </Form.Group>
          
-      <Form.Group className="mb-3" >
+      <Form.Group className="mb-3">
         <Form.Label>Email</Form.Label>
           <Form.Control 
             type="email" 
             placeholder="Email"
            {...register("email", { required: true })}
           />
-          {errors.name && <span className='text-danger'>Email es requerido</span>}
+          {errors.email && <span className='text-danger'>Email es requerido</span>}
       </Form.Group>
 
       <Form.Group className="mb-3" >
@@ -57,7 +55,7 @@ console.log(errors)
             placeholder="Contraseña"
             { ...register("password", { required: true })}
           />
-          {errors.name && <span className='text-danger'>Contraseña es requerda</span>}
+          {errors.password && <span className='text-danger'>Contraseña es requerda</span>}
       </Form.Group>
 
       <Form.Group className="mb-4" >

@@ -2,9 +2,14 @@ import React from 'react'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Productos from './Productos';
+import { useAuth } from '../Context';
 
 
 const Home = () => {
+  const data = useAuth();
+  console.log(data)
+
+
   return (
     <div className='container wm-30 mt-5 w-50'>
       <Form className="d-flex me-auto my-2 my-lg-0">

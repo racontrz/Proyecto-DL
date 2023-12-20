@@ -27,9 +27,9 @@ const loginUser = async (req, res) => {
     const token = await createAccessToken({ id: result.rows[0].id  });
   
     res.cookie('token', token, {
-      httpOnly: true,
+      // httpOnly: true,
       sameSite: 'none',
-      maxAge: 1000 * 60 * 60 * 24 * 7
+      secure: true,
     })       
   
     return res.json(result.rows[0]);
@@ -54,8 +54,9 @@ const registroUser = async (req, res, next) => {
     const token = await createAccessToken({ id: result.rows[0].id });
 
     res.cookie('token', token, {
-      httpOnly: true,
+      // httpOnly: true,
       sameSite: 'none',
+      secure: true,
       maxAge: 1000 * 60 * 60 * 24 * 7
     });       
 
@@ -87,7 +88,18 @@ const exitUser = async (req, res) => {
 const perfilUser = async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users WHERE id = $1', [req.userId]);
+    const token = await createAccessToken({ id: result.rows[0].id });
+
+    res.cookie('token', token, {
+      // httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    });   
+    
     return res.json(result.rows[0]);
+    
+    
   } catch (error) {
    console.log(error.message) 
   }
