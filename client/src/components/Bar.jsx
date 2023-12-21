@@ -4,10 +4,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context'
 
 
 function Bar() {
-  // const { user, setUser } = useData();
+  const { isAuth, exit  } = useAuth();
  
   const navegate = useNavigate();
   const DarkMode = () => {  
@@ -22,20 +23,12 @@ function Bar() {
     document.querySelector( 'body' ).getAttribute( 'data-bs-theme' ) === 'light' ? DarkMode() : LightkMode();
   }
 
- const objeto = (o) => {
-   return Object.entries(o).length === 0;
- };
-
- const salir = () => {
-   setUser({});
-   return navegate('/perfil');
- }
 
   return (
     <div>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
-          <NavLink className="navbar-brand" to="/">Drummerworld</NavLink>
+          <NavLink className="navbar-brand" to="/home">Drummerworld</NavLink>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -46,14 +39,14 @@ function Bar() {
             
             <Button onClick={SwitchMode} className="btn-secondary rounded me-3"><i id="dl-icon" className="bi bi-sun-fill"></i></Button>
             
-            {/* {!objeto(user) ? (
+            {isAuth ? (
               <div>
-                <img src={usersBd.image} className="rounded-circle me-2" alt="avatar" width="40" height="40" />
+                <img src={isAuth.image} className="rounded-circle me-2" alt="avatar" width="40" height="40" />
                 <Button variant="outline-secondary" className="me-2">
                 <NavLink className="nav-link" to="/perfil">Mi Perfil</NavLink>
                 </Button>
                 <Button variant="outline-danger" >
-                <NavLink className="nav-link" to="/login" onClick={salir}>Salir</NavLink>
+                <NavLink className="nav-link" to="/login" onClick={() => exit()}>Salir</NavLink>
                 </Button>
               </div>
             ) : (
@@ -65,7 +58,7 @@ function Bar() {
               <NavLink className="nav-link" to="/registro">Crear Cuenta</NavLink>
               </Button>
              </div>
-            )}    */}
+            )}   
             
            
           </Navbar.Collapse>

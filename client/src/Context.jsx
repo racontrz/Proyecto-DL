@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import axios from "./api/axios";
 import cookie from "js-cookie";
 
+
 export const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -80,6 +81,11 @@ export function AuthProvider({ children }) {
     }
   }, [])
   
+  const exit = async () => {
+    const res = await axios.post('/exit');
+    setUser(null);
+    setIsAuth(false);
+  }
 
   return (
     <AuthContext.Provider value={{ 
@@ -87,7 +93,8 @@ export function AuthProvider({ children }) {
       isAuth, 
       errors,
       registro,
-      login
+      login,
+      exit
       }} >
       {children}
     </AuthContext.Provider>

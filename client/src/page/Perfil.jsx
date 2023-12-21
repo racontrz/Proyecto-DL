@@ -2,10 +2,10 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../Context";
+// import { useAuth } from "../Context";
 
 const Perfil = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
  
   return (
     <div className='container mt-4'>

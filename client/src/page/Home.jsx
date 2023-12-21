@@ -11,7 +11,8 @@ const Home = () => {
 
 
   return (
-    <div className='container wm-30 mt-5 w-50'>
+    <div>
+      <div className='container wm-30 mt-5 w-50'>
       <Form className="d-flex me-auto my-2 my-lg-0">
         <Form.Control
           type="search"
@@ -21,9 +22,11 @@ const Home = () => {
         />
         <Button variant="outline-secondary">Search</Button>
       </Form>
-      <div>
-        <Productos />
+      <div className='text-center m-5'>
+        <h1>Productos</h1>
       </div>
+    </div>
+    <Productos />
     </div>
   )
 }

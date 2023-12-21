@@ -17,7 +17,7 @@ const { z } = require ('zod');
     required_error: 'La imagen es requerida',
     invalid_type_error: 'La imagen debe ser un string',
   }).min(1).max(500),
-  price: z.number({
+  price: z.string({
     required_error: 'El precio es requerido',
     invalid_type_error: 'El precio debe ser un number',
   }),

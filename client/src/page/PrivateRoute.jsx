@@ -1,12 +1,6 @@
-// import { Navigate, Outlet } from "react-router-dom";
-// import { useAuth } from '../Context'
+import { Navigate, Outlet } from "react-router-dom"
 
-
-// const PrivateRoute = () => {
-//   const { user } = useAuth();
-
-//   return user ? <Outlet /> : <Navigate to="/perfil" />;
-
-// };
-
-// export default PrivateRoute;
+export const PrivateRoute = ({ redirectTo, allowed, children }) => {
+  if (!allowed) return <Navigate to={redirectTo} replace />
+  return children ? children : <Outlet />;
+}

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getAllProductos } from '../api/productos.api';
 
 
-function Productos() {
+function CardMisPublicaciones() {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
@@ -40,8 +40,4 @@ function Productos() {
   );
 }
 
-export default Productos;
-
-
-
-
+export default CardMisPublicaciones;
