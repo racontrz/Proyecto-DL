@@ -1,5 +1,13 @@
 import axios from "./axios"; 
 
-export const postProductos = async (data) => axios.post("/productos", data)
+export const postProductos =  (data) => axios.post("/productos", data)
 
-export const getAllProductos = async () => axios.get("/productos")
+export const getMyProductos =  () => axios.get("/misproductos")
+
+export const getAllProductos =  () => axios.get("/productos")
+
+export const deleteProductos =  (id) => axios.delete(`/productos/${id}`)
+
+export const putProductos =  (id, data) => axios.put(`/misproductos/${id}`, data)
+
+export const getIdProductos =  (id) => axios.get(`/productos/${id}`)

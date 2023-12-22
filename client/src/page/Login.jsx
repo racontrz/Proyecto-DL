@@ -14,7 +14,7 @@ function Login() {
   const onSubmit = handleSubmit (async(data) => {
     const user = await login(data);
     if (user) {
-      navegate('/perfil');
+      navegate('/misproductos');
     };
     
   });

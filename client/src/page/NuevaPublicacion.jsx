@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -7,24 +7,35 @@ import Perfil from './Perfil'
 import Col from 'react-bootstrap/esm/Col';
 import { useForm } from 'react-hook-form';
 import { postProductos } from '../api/productos.api' 
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../Context';
 
 const NuevaPublicacion = () => {
   const { register, handleSubmit } = useForm();
   const navegate = useNavigate();
+  const params = useParams();
+  const { cargarproducto } = useAuth();
 
   const onSubmit = handleSubmit (async(data) => {
     const res = await postProductos(data)
-    navegate('/mis-publicaciones')
-    console.log(res)
-  })
+    if (res) {
+      navegate('/')
+    }
+  });
+
+  useEffect(() => {
+    if (params.id) {
+      cargarproducto(params.id).then(producto => console.log(producto))
+    }
+  }, [])
 
   return (
     <div>
       <Perfil />
       <div>
-      <h1 className="text-center mt-5">Nueva Publicación</h1>
+      <h1 className="text-center mt-5">
+        {params.id ? 'Editar Publicacion' : 'Nueva Publicacion'}
+      </h1>
       <div className="container border rounded w-50 mt-5 ">
       <Form className='container mt-3'>
         <Form.Group className="mb-3" >
@@ -85,7 +96,7 @@ const NuevaPublicacion = () => {
         variant="outline-secondary" 
         type="submit" 
         className='mb-3'>
-        ingresar
+        {params.id ? 'Editar' : 'Crear'}
       </Button>
     </Form>
     </div>

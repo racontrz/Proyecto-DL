@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "./api/axios";
 import cookie from "js-cookie";
+import { getIdProductos } from "./api/productos.api";
 
 
 export const AuthContext = createContext();
@@ -37,7 +38,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (cookie.get("token")) {
       axios
-      .get('/perfil ')
+      .get('/productos ')
       .then((res) => {
         setUser(res.data);
         setIsAuth(true);
@@ -52,7 +53,7 @@ export function AuthProvider({ children }) {
   const login = async (data) => {
     try {
       const res = await axios.post('/login', data);
-      alert("Bienbenido")
+      alert("Bienvenido!")    
       setUser(res.data);
       setIsAuth(true);
       return res.data
@@ -69,7 +70,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (cookie.get("token")) {
       axios
-      .get('/perfil ')
+      .get('/productos ')
       .then((res) => {
         setUser(res.data);
         setIsAuth(true);
@@ -87,6 +88,12 @@ export function AuthProvider({ children }) {
     setIsAuth(false);
   }
 
+  const cargarproducto = async id => {
+    const res = await getIdProductos(id);
+    return res.data
+  }
+
+
   return (
     <AuthContext.Provider value={{ 
       user, 
@@ -94,7 +101,8 @@ export function AuthProvider({ children }) {
       errors,
       registro,
       login,
-      exit
+      exit,
+      cargarproducto
       }} >
       {children}
     </AuthContext.Provider>

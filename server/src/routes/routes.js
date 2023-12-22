@@ -13,7 +13,7 @@ router.get('/productos/:id', isAuth, getIdProductos);
 
 router.post('/productos', isAuth, validacionSchema(crearProductoSchema ), postProductos);
 
-router.put('/productos/:id',isAuth, validacionSchema(editarProductoSchema ), putProductos);
+router.put('/misproductos/:id',isAuth, validacionSchema(editarProductoSchema ), putProductos);
 
 router.delete('/productos/:id', isAuth, deleteProductos);
 
