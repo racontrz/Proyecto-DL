@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => res.json ({message: 'Hello World Api!'}));
-app.use('/api', routes);
-app.use('/api', authRoutes);
+app.use('/', routes);
+app.use('/', authRoutes);
 
 app.use((err, req, res, next) => {
   res.status(500).json({
