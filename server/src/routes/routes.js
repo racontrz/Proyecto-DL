@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { getAllProductos, getIdProductos, postProductos, putProductos, deleteProductos, getMyProductos } = require('../controllers/controller.js');
+const { getAllProductos, getIdProductos, postProductos, putProductos, deleteProductos, getMyProductos, ping } = require('../controllers/controller.js');
 const { isAuth } = require('../middlewares/auth.middleware.js');
 const { validacionSchema } = require('../middlewares/validacion.middleware.js');
 const { crearProductoSchema, editarProductoSchema } = require( '../schemas/schemas.js');
@@ -16,6 +16,8 @@ router.post('/productos', isAuth, validacionSchema(crearProductoSchema ), postPr
 router.put('/misproductos/:id',isAuth, validacionSchema(editarProductoSchema ), putProductos);
 
 router.delete('/productos/:id', isAuth, deleteProductos);
+
+router.get('/ping', ping);
 
 
 module.exports = router;

@@ -99,7 +99,18 @@ const deleteProductos = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
+
 };
+
+const ping = async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.log(error.message);
+  }
+  
+}
 
 
 module.exports = {
@@ -108,6 +119,6 @@ module.exports = {
   getIdProductos,
   postProductos,
   putProductos,
-  deleteProductos
-  
+  deleteProductos,
+  ping
 }
