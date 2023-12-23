@@ -5,7 +5,7 @@ const authRoutes = require('./routes/auth.routes.js');
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
-const { ORIGIN } = require('./db.js');
+const { ORIGIN } = require('./config.js');
 
 
 app.use(cors({ origin: ORIGIN,
