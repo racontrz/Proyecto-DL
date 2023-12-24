@@ -6,26 +6,41 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Perfil from './Perfil'
 import Col from 'react-bootstrap/esm/Col';
 import { useForm } from 'react-hook-form';
-import { postProductos } from '../api/productos.api' 
+import { postProductos, putProductos } from '../api/productos.api' 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../Context';
 
 const NuevaPublicacion = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue} = useForm();
   const navegate = useNavigate();
   const params = useParams();
-  const { cargarproducto } = useAuth();
+  const { cargarproducto, actualizar } = useAuth();
 
   const onSubmit = handleSubmit (async(data) => {
-    const res = await postProductos(data)
-    if (res) {
-      navegate('/')
+   let product;
+
+    if (!params.id) {
+      product = await postProductos(data)
+      
+    } else {
+      product = await actualizar(params.id, data)
+      alert('Publicacion Actualizada')
+      navegate('/misproductos');
+    }
+    if (product) {
+      navegate('/misproductos');
     }
   });
 
   useEffect(() => {
     if (params.id) {
-      cargarproducto(params.id).then(producto => console.log(producto))
+      cargarproducto(params.id).then(producto => {
+        setValue('name', producto.name)
+        setValue('brand', producto.brand)
+        setValue('price', producto.price)
+        setValue('description', producto.description)
+        setValue('image', producto.image)
+      })
     }
   }, [])
 
@@ -66,7 +81,7 @@ const NuevaPublicacion = () => {
           <Form.Control
            type="text"
            placeholder="$ Precio"
-           {...register("price", { required: true })}
+           {...register('price', { required: true })}
            />
            
       </Form.Group> 

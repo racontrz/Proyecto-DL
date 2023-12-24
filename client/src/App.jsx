@@ -17,7 +17,7 @@ import {PrivateRoute} from './page/PrivateRoute'
 function App() {
   
   const { isAuth } = useAuth();
-  console.log(isAuth);
+  
 
   return (
     <div className="App">

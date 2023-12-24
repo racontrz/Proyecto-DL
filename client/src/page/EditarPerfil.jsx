@@ -31,7 +31,7 @@ const EditarPerfil = () => {
           <Form.Control type="text" placeholder="Link Imagen" />
       </Form.Group>      
       <Button variant="outline-secondary" type="submit" className='mb-4'>
-        ingresar
+        Editar
       </Button>
     </Form>
     </div>

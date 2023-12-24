@@ -23,7 +23,7 @@ const getMyProductos = async (req, res) => {
 const getIdProductos = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM products WHERE product_id = $1', [id]);
+    const result = await pool.query('SELECT * FROM products WHERE id = $1', [id]);
 
     if (result.rows.length > 0) {
       res.json(result.rows[0]);

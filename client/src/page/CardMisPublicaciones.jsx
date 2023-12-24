@@ -49,6 +49,7 @@ function CardMisPublicaciones() {
                 onClick={async() => {
                   alert('Producto Eliminado...')
                   await deleteProductos(producto.id);
+                  
                   window.location.reload();
                                    
                 }}>

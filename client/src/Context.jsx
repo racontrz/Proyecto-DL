@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "./api/axios";
 import cookie from "js-cookie";
-import { getIdProductos } from "./api/productos.api";
+import { getIdProductos, putProductos } from "./api/productos.api";
 
 
 export const AuthContext = createContext();
@@ -93,6 +93,21 @@ export function AuthProvider({ children }) {
     return res.data
   }
 
+  const actualizar = async (id, data) => {
+    const res = await putProductos(id, data);
+    res.data
+
+
+    // try {
+    //   const res = await putProductos(id, data);
+    //   return res.data
+    // } catch (error) {
+    //   if (error.response) {
+    //     setErrors([error.response.data.message]);
+    //   }
+    // }
+  }
+
 
   return (
     <AuthContext.Provider value={{ 
@@ -102,7 +117,8 @@ export function AuthProvider({ children }) {
       registro,
       login,
       exit,
-      cargarproducto
+      cargarproducto,
+      actualizar
       }} >
       {children}
     </AuthContext.Provider>

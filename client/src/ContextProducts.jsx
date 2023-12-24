@@ -1,5 +1,6 @@
 import { getAllProductos } from '../api/productos.api';
 import { createContext, useState, useContext, useEffect } from "react";
+import { getIdProductos } from './api/productos.api';
 
 const ProductsContext = createContext();
 

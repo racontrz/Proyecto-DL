@@ -7,7 +7,7 @@ import { useAuth } from '../Context';
 
 const Home = () => {
   const data = useAuth();
-  console.log(data)
+ 
 
 
   return (
