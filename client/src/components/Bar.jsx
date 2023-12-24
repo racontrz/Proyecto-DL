@@ -10,7 +10,7 @@ import { useAuth } from '../Context'
 function Bar() {
   const { isAuth, exit  } = useAuth();
  
-  const navegate = useNavigate();
+  // const navegate = useNavigate();
   const DarkMode = () => {  
     document.querySelector( 'body' ).setAttribute( 'data-bs-theme', 'dark' );
     document.querySelector( '#dl-icon' ).setAttribute( 'class', 'bi bi-sun-fill' );
