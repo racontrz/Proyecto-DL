@@ -36,7 +36,7 @@ function App() {
               <Route path="/nueva-publicacion/" element={<NuevaPublicacion/>} />
               <Route path="/nueva-publicacion/:id" element={<NuevaPublicacion/>} />
               <Route path="/mis-datos" element={<EditarPerfil/>} />
-              <Route path="/detalle/:id" element={<DetalleCard/>} />
+              
             </Route > 
 
             <Route path="*" element={<NotFound />} />
