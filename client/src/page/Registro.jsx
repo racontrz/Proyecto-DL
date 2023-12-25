@@ -58,14 +58,14 @@ function Registro() {
           {errors.password && <span className='text-danger'>Contraseña es requerda</span>}
       </Form.Group>
 
-      <Form.Group className="mb-4" >
+      {/* <Form.Group className="mb-4" >
         <Form.Label>Imagen</Form.Label>
           <Form.Control 
             type="text" 
             placeholder="Link Imagen"
              {...register("image")}
           />
-      </Form.Group>          
+      </Form.Group>           */}
 
       <div className='d-flex justify-content-between'>
         <div>
