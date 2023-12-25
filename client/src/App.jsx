@@ -28,6 +28,7 @@ function App() {
             <Route element={<PrivateRoute allowed={!isAuth} redirectTo={"/"}/>}>
               <Route path="/login" element={<Login />} />
               <Route path="/registro" element={<Registro />} />
+              <Route path="/detalle/:id" element={<DetalleCard/>} />
             </Route>
             <Route element={<PrivateRoute allowed={isAuth} redirectTo={"/login"}/>} >
               <Route path="/perfil" element={<Perfil />} />
