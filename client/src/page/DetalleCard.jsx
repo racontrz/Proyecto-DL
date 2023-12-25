@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useEffect, useState } from 'react';
-import { getMyProductos } from '../api/productos.api';
+import { getAllProductos } from '../api/productos.api';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,7 +16,7 @@ function DetalleCard() {
 
 
   useEffect(() => {
-    getMyProductos()
+    getAllProductos()
     .then(Response => {
         setProductos(Response.data)
         
@@ -55,4 +55,4 @@ function DetalleCard() {
   );
 }
 
-export default DetalleCard;
+export default DetalleCard

@@ -4,6 +4,7 @@ export const postProductos =  (data) => axios.post("/productos", data)
 
 export const getMyProductos =  () => axios.get("/misproductos")
 
+
 export const getAllProductos =  () => axios.get("/productos")
 
 export const deleteProductos =  (id) => axios.delete(`/productos/${id}`)
