@@ -40,7 +40,7 @@ function Bar() {
             
             {isAuth ? (
               <div>
-                <img src={isAuth.image} className="rounded-circle me-2"  width="40" height="40" />
+                {/* <img src={isAuth.image} className="rounded-circle me-2"  width="40" height="40" /> */}
                 <Button variant="outline-secondary" className="me-2">
                 <NavLink className="nav-link" to="/misproductos">Mi Perfil</NavLink>
                 </Button>
