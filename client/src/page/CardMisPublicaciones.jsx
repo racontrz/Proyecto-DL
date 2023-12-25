@@ -36,7 +36,7 @@ function CardMisPublicaciones() {
               <ListGroup.Item>${producto.price}</ListGroup.Item>
            
               </ListGroup>
-              <Card.Body className='d-flex justify-content-between'>
+              <Card.Body className='d-flex justify-content-between mt-3'>
               <Button 
                 variant="outline-secondary" 
                 type="submit" 
@@ -44,6 +44,7 @@ function CardMisPublicaciones() {
                 Editar
               </Button>
               <Button 
+                
                 variant="outline-danger" 
                 type="submit" 
                 onClick={async() => {

@@ -8,8 +8,9 @@ CREATE DATABASE drum;
   email VARCHAR(255)  UNIQUE,
   password VARCHAR(500) ,
   image VARCHAR(500)
-);
- 
+  );
+
+  
 CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,
   name VARCHAR(45) ,
@@ -24,4 +25,6 @@ CREATE TABLE IF NOT EXISTS products (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 		);
+ 
+
  

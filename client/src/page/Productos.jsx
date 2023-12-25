@@ -3,6 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { useEffect, useState } from 'react';
 import { getAllProductos } from '../api/productos.api';
 import Button from 'react-bootstrap/Button';
+import { NavLink } from "react-router-dom";
 
 
 function Productos() {
@@ -27,17 +28,13 @@ function Productos() {
         
           </Card.Body>
           <ListGroup className="list-group-flush">
-          <ListGroup.Item>{producto.brand}</ListGroup.Item>
+          {/* <ListGroup.Item>{producto.brand}</ListGroup.Item> */}
           <ListGroup.Item>${producto.price}</ListGroup.Item>
        
-          </ListGroup>
-          <Card.Body>
-          <Button 
-            variant="outline-secondary" 
-            type="submit" 
-            // onClick={'#'}
-            >
-            Ver mas
+          </ListGroup >
+          <Card.Body className='mt-3'>
+          <Button variant="outline-secondary" >        
+          <NavLink className="navbar-brand " to={`/detalle/${producto.id}`}	>Ver Más</NavLink>
           </Button>
           </Card.Body>
           </Card>

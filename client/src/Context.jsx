@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import axios from "./api/axios";
 import cookie from "js-cookie";
 import { getIdProductos, putProductos } from "./api/productos.api";
+import { perfilUser, updateUser } from "./api/usuario.api";
 
 
 export const AuthContext = createContext();
@@ -88,7 +89,7 @@ export function AuthProvider({ children }) {
     setIsAuth(false);
   }
 
-  const cargarproducto = async id => {
+  const cargarProducto = async id => {
     const res = await getIdProductos(id);
     return res.data
   }
@@ -97,16 +98,18 @@ export function AuthProvider({ children }) {
     const res = await putProductos(id, data);
     res.data
 
-
-    // try {
-    //   const res = await putProductos(id, data);
-    //   return res.data
-    // } catch (error) {
-    //   if (error.response) {
-    //     setErrors([error.response.data.message]);
-    //   }
-    // }
   }
+
+  const cargarUser = async id => {
+    const res = await perfilUser(id);
+    return res.data
+  }
+
+  const actualizarUser = async (id, data) => {
+    const res = await updateUser(id, data);
+    return res.data
+  }
+
 
 
   return (
@@ -117,8 +120,10 @@ export function AuthProvider({ children }) {
       registro,
       login,
       exit,
-      cargarproducto,
-      actualizar
+      cargarProducto,
+      actualizar,
+      cargarUser,
+      actualizarUser
       }} >
       {children}
     </AuthContext.Provider>

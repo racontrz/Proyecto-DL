@@ -39,15 +39,16 @@ const loginUser = async (req, res) => {
 }
 
 const registroUser = async (req, res, next) => {
-  const { username, email, password} = req.body;
+  const { username, email, password, image} = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await pool.query(
-      'INSERT INTO users ( username, email, password) VALUES ($1, $2, $3) RETURNING *',[
+      'INSERT INTO users ( username, email, password, image) VALUES ($1, $2, $3, $4) RETURNING *',[
         username, 
         email, 
-        hashedPassword
+        hashedPassword,
+        image
      ]
     ); 
   
@@ -105,9 +106,30 @@ const perfilUser = async (req, res) => {
   }
 }
 
+const updateUser = async (req, res) => {
+  try {
+    const { username, email, password, image} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const result = await pool.query(
+      'UPDATE users SET username = $1, email = $2, password = $3, image = $4, WHERE id = $5 RETURNING *',[
+        username, 
+        email, 
+        hashedPassword,
+        image,
+        req.userId
+     ]
+    ); 
+    return res.json(result.rows[0]);
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+
 module.exports = {
   loginUser,
   registroUser,
   exitUser,
-  perfilUser
+  perfilUser,
+  updateUser
 } 

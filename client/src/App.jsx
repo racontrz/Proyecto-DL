@@ -11,6 +11,7 @@ import Publicaciones from "./page/Publicaciones";
 import NuevaPublicacion from "./page/NuevaPublicacion";
 import EditarPerfil from "./page/EditarPerfil";
 import {PrivateRoute} from './page/PrivateRoute'
+import DetalleCard from './page/detalleCard'
 
 
 
@@ -34,6 +35,7 @@ function App() {
               <Route path="/nueva-publicacion/" element={<NuevaPublicacion/>} />
               <Route path="/nueva-publicacion/:id" element={<NuevaPublicacion/>} />
               <Route path="/mis-datos" element={<EditarPerfil/>} />
+              <Route path="/detalle/:id" element={<DetalleCard/>} />
             </Route > 
 
             <Route path="*" element={<NotFound />} />

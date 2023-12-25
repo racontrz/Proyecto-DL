@@ -14,7 +14,7 @@ const NuevaPublicacion = () => {
   const { register, handleSubmit, setValue} = useForm();
   const navegate = useNavigate();
   const params = useParams();
-  const { cargarproducto, actualizar } = useAuth();
+  const { cargarProducto, actualizar } = useAuth();
 
   const onSubmit = handleSubmit (async(data) => {
    let product;
@@ -34,7 +34,7 @@ const NuevaPublicacion = () => {
 
   useEffect(() => {
     if (params.id) {
-      cargarproducto(params.id).then(producto => {
+      cargarProducto(params.id).then(producto => {
         setValue('name', producto.name)
         setValue('brand', producto.brand)
         setValue('price', producto.price)

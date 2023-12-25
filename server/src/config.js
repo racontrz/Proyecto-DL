@@ -1,5 +1,7 @@
 const PORT = process.env.PORT || 3000;
-const ORIGIN = process.env.ORIGIN || "http://localhost:5173";
+const ORIGIN = 'https://famed-lettuce-production.up.railway.app' || "http://localhost:5173";
+// const ORIGIN = process.env.ORIGIN || "http://localhost:5173";
+
 
 const PG_PORT = process.env.PG_PORT || 5432;
 const PG_USER = process.env.PG_USER || "postgres";

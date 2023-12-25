@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_BAKEND || "http://localhost:3000/api";
+const baseURL = 'proyecto-dl-production.up.railway.app/api' || "http://localhost:3000/api";
 
 const client = axios.create({
   baseURL,
