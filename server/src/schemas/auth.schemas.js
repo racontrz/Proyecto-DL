@@ -15,10 +15,10 @@ const registroSchema = z.object({
   }).min(6, {
      message: 'la contraseña debe tener al menos 6 caracteres' 
     }).max(500),
-    image: z.string({
-      required_error: 'La image es requerida',
-      invalid_type_error: 'La password debe ser un string',  
-    })
+    // image: z.string({
+    //   required_error: 'La image es requerida',
+    //   invalid_type_error: 'La password debe ser un string',  
+    // })
 
 });
 
